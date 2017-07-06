@@ -1,4 +1,4 @@
-<?xml version='1.0' encoding='utf-8'?>
+ <?xml version='1.0' encoding='utf-8'?>
 <plugin id="cordova-plugin-firebase" version="0.1.20"
 xmlns="http://apache.org/cordova/ns/plugins/1.0"
 xmlns:android="http://schemas.android.com/apk/res/android">
@@ -63,6 +63,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 		<framework src="com.google.firebase:firebase-messaging:10.2.1" />
 		<framework src="com.google.firebase:firebase-crash:10.2.1" />
 		<framework src="com.google.firebase:firebase-config:10.2.1" />
+
 	</platform>
 
 	<platform name="ios">
@@ -83,7 +84,14 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 		</config-file>
 
 		<resource-file src="src/ios/GoogleService-Info.plist" target="Resources/GoogleService-Info.plist" />
-
+		<resource-file src="src/ios/Firebase/Crash/upload-sym-util.bash" target="Resources/Crash/upload-sym-util.bash" />
+		<resource-file src="src/ios/Firebase/Crash/upload-sym.sh" target="Resources/Crash/upload-sym.sh" />
+		<resource-file src="src/ios/Firebase/Crash/upload-sym" target="Resources/Crash/upload-sym" />
+		<resource-file src="src/ios/Firebase/Crash/batch-upload" target="Resources/Crash/batch-upload" />
+		<resource-file src="src/ios/Firebase/Crash/extract_keys" target="Resources/Crash/extract_keys" />
+		<resource-file src="src/ios/Firebase/Crash/dump_syms" target="Resources/Crash/dump_syms" />
+		<resource-file src="src/ios/Firebase/fir-otipass-alsace-firebase-crashreporting-zvy3u-32d19d3c46.json" target="Resources/fir-otipass-alsace-firebase-crashreporting-zvy3u-32d19d3c46.json" />
+		
 		<header-file src="src/ios/AppDelegate+FirebasePlugin.h" />
 		<source-file src="src/ios/AppDelegate+FirebasePlugin.m" />
 		<header-file src="src/ios/FirebasePlugin.h" />
@@ -98,9 +106,10 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 		<framework custom="true" src="src/ios/Firebase/Analytics/GoogleSymbolUtilities.framework" />
 		<framework custom="true" src="src/ios/Firebase/Analytics/GoogleUtilities.framework" />
 		<framework custom="true" src="src/ios/Firebase/Messaging/FirebaseMessaging.framework" />
-		<framework custom="true" src="src/ios/Firebase/Messaging/GoogleIPhoneUtilities.framework" />
 		<framework custom="true" src="src/ios/Firebase/Crash/FirebaseCrash.framework" />
 		<framework custom="true" src="src/ios/Firebase/RemoteConfig/FirebaseRemoteConfig.framework" />
+		<framework custom="true" src="src/ios/Firebase/Analytics/GoogleToolboxForMac.framework" />
+		<framework custom="true" src="src/ios/Firebase/Crash/Protobuf.framework" />
 	</platform>
 
 	<platform name="browser">

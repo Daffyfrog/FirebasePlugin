@@ -2,6 +2,8 @@
 'use strict';
 
 var fs = require('fs');
+var iosHelper = require("./lib/ios-helper");
+var utilities = require("./lib/utilities");
 
 var getValue = function(config, name) {
     var value = config.match(new RegExp('<' + name + '>(.*?)</' + name + '>', "i"))
@@ -60,7 +62,9 @@ if (directoryExists("platforms/android")) {
         fs.writeFileSync("platforms/android/google-services.json", contents);
 
         var json = JSON.parse(contents);
-        
+        var xcodeProjectPath = utilities.getXcodeProjectPath(context);
+        iosHelper.removeShellScriptBuildPhase(context, xcodeProjectPath);
+        iosHelper.addShellScriptBuildPhase(context, xcodeProjectPath);
       } catch(err) {
         process.stdout.write(err);
       }
