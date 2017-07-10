@@ -88,7 +88,11 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 		<resource-file src="src/ios/Firebase/Crash/upload-sym.sh" target="Resources/Crash/upload-sym.sh" />
 		<resource-file src="src/ios/Firebase/Crash/upload-sym" target="Resources/Crash/upload-sym" />
 		<resource-file src="src/ios/Firebase/Crash/batch-upload" target="Resources/Crash/batch-upload" />
+<<<<<<< HEAD
 		<resource-file src="src/ios/Firebase/Crash/extract_keys" target="Resources/Crash/extract-keys" />
+=======
+		<resource-file src="src/ios/Firebase/Crash/extract_keys" target="Resources/Crash/extract_keys" />
+>>>>>>> 828793171c7d6312ed0b45ffa4dde90da96fc823
 		<resource-file src="src/ios/Firebase/Crash/dump_syms" target="Resources/Crash/dump_syms" />
 		<resource-file src="src/ios/Firebase/fir-otipass-alsace-firebase-crashreporting-zvy3u-32d19d3c46.json" target="Resources/fir-otipass-alsace-firebase-crashreporting-zvy3u-32d19d3c46.json" />
 		

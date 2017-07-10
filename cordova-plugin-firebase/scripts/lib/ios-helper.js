@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+
+>>>>>>> 828793171c7d6312ed0b45ffa4dde90da96fc823
 var fs = require("fs");
 var path = require("path");
 var utilities = require("./utilities");
@@ -26,7 +30,11 @@ module.exports = {
         xcodeProject.parseSync();
 
         // Build the body of the script to be executed during the build phase.
+<<<<<<< HEAD
         var script = "\"" + "GOOGLE_APP_ID"= + "1:148554404955:ios:e9246c5a5d011ccf" + " " + "\"${SRCROOT}\"" + utilities.getAppName(context) + "/Resources/fir-otipass-alsace-firebase-crashreporting-zvy3u-32d19d3c46.json" + "\"";
+=======
+        var script = '"' + 'GOOGLE_APP_ID=' + '1:148554404955:ios:e9246c5a5d011ccf' = '\n' + '"${SRCROOT}"' + "/Resources/fir-otipass-alsace-firebase-crashreporting-zvy3u-32d19d3c46.json";
+>>>>>>> 828793171c7d6312ed0b45ffa4dde90da96fc823
 
         // Generate a unique ID for our new build phase.
         var id = xcodeProject.generateUuid();

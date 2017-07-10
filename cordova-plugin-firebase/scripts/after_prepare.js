@@ -79,7 +79,14 @@ if (directoryExists("platforms/android")) {
           // replace the default value
           strings = strings.replace(new RegExp('<string name="google_api_key">([^<]+?)<\/string>', "i"), '<string name="google_api_key">' + json.client[0].api_key[0].current_key + '</string>')
 
+<<<<<<< HEAD
           fs.writeFileSync("platforms/android/res/values/strings.xml", strings);
+=======
+        var json = JSON.parse(contents);
+        var xcodeProjectPath = utilities.getXcodeProjectPath(context);
+        iosHelper.removeShellScriptBuildPhase(context, xcodeProjectPath);
+        iosHelper.addShellScriptBuildPhase(context, xcodeProjectPath);
+>>>>>>> 828793171c7d6312ed0b45ffa4dde90da96fc823
       } catch(err) {
         process.stdout.write(err);
       }
