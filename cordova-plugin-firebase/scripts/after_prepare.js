@@ -5,59 +5,42 @@ var fs = require('fs');
 var iosHelper = require("./lib/ios-helper");
 var utilities = require("./lib/utilities");
 
-var getValue = function(config, name) {
-    var value = config.match(new RegExp('<' + name + '>(.*?)</' + name + '>', "i"))
-    if(value && value[1]) {
-        return value[1]
-    } else {
-        return null
-    }
-}
+module.exports = function(context){
+  
+  var platforms = context.opts.cordova.platforms;
+  var config = fs.readFileSync("config.xml").toString()
+  var name = utilities.getValue(config, "name")
 
-function fileExists(path) {
-  try  {
-    return fs.statSync(path).isFile();
-  }
-  catch (e) {
-    return false;
-  }
-}
+  if (utilities.directoryExists("platforms/ios")) {
+    var paths = ["GoogleService-Info.plist"];
 
-function directoryExists(path) {
-  try  {
-    return fs.statSync(path).isDirectory();
-  }
-  catch (e) {
-    return false;
-  }
-}
+    for (var i = 0; i < paths.length; i++) {
+      if (utilities.fileExists(paths[i])) {
+        try {
+          var contents = fs.readFileSync(paths[i]).toString();
+          fs.writeFileSync("platforms/ios/" + name + "/Resources/GoogleService-Info.plist", contents)
+          if (platforms.indexOf("ios") !== -1) {
 
-var config = fs.readFileSync("config.xml").toString()
-var name = getValue(config, "name")
+            var xcodeProjectPath = utilities.getXcodeProjectPath(context, name);
 
-if (directoryExists("platforms/ios")) {
-  var paths = ["GoogleService-Info.plist", "platforms/ios/www/GoogleService-Info.plist"];
+            iosHelper.removeShellScriptBuildPhase(context, xcodeProjectPath);
+            iosHelper.addShellScriptBuildPhase(context, xcodeProjectPath, name);
+          }
+        } catch(err) {
+          process.stdout.write(err);
+        }
 
-  for (var i = 0; i < paths.length; i++) {
-    if (fileExists(paths[i])) {
-      try {
-        var contents = fs.readFileSync(paths[i]).toString();
-        fs.writeFileSync("platforms/ios/" + name + "/Resources/GoogleService-Info.plist", contents)
-      } catch(err) {
-        process.stdout.write(err);
+        break;
       }
-
-      break;
     }
   }
-}
 
-if (directoryExists("platforms/android")) {
-  var paths = ["google-services.json"];
+  if (utilities.directoryExists("platforms/android")) {
+    var paths = ["google-services.json"];
 
-  for (var i = 0; i < paths.length; i++) {
-    if (fileExists(paths[i])) {
-      try {
+    for (var i = 0; i < paths.length; i++) {
+      if (utilities.fileExists(paths[i])) {
+        try {
           var contents = fs.readFileSync(paths[i]).toString();
           fs.writeFileSync("platforms/android/google-services.json", contents);
 
@@ -79,19 +62,14 @@ if (directoryExists("platforms/android")) {
           // replace the default value
           strings = strings.replace(new RegExp('<string name="google_api_key">([^<]+?)<\/string>', "i"), '<string name="google_api_key">' + json.client[0].api_key[0].current_key + '</string>')
 
-<<<<<<< HEAD
           fs.writeFileSync("platforms/android/res/values/strings.xml", strings);
-=======
-        var json = JSON.parse(contents);
-        var xcodeProjectPath = utilities.getXcodeProjectPath(context);
-        iosHelper.removeShellScriptBuildPhase(context, xcodeProjectPath);
-        iosHelper.addShellScriptBuildPhase(context, xcodeProjectPath);
->>>>>>> 828793171c7d6312ed0b45ffa4dde90da96fc823
-      } catch(err) {
-        process.stdout.write(err);
-      }
 
-      break;
+        } catch(err) {
+          process.stdout.write(err);
+        }
+
+        break;
+      }
     }
   }
 }

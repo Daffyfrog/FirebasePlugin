@@ -88,11 +88,7 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 		<resource-file src="src/ios/Firebase/Crash/upload-sym.sh" target="Resources/Crash/upload-sym.sh" />
 		<resource-file src="src/ios/Firebase/Crash/upload-sym" target="Resources/Crash/upload-sym" />
 		<resource-file src="src/ios/Firebase/Crash/batch-upload" target="Resources/Crash/batch-upload" />
-<<<<<<< HEAD
-		<resource-file src="src/ios/Firebase/Crash/extract_keys" target="Resources/Crash/extract-keys" />
-=======
-		<resource-file src="src/ios/Firebase/Crash/extract_keys" target="Resources/Crash/extract_keys" />
->>>>>>> 828793171c7d6312ed0b45ffa4dde90da96fc823
+		<resource-file src="src/ios/Firebase/Crash/extract-keys" target="Resources/Crash/extract-keys" />
 		<resource-file src="src/ios/Firebase/Crash/dump_syms" target="Resources/Crash/dump_syms" />
 		<resource-file src="src/ios/Firebase/fir-otipass-alsace-firebase-crashreporting-zvy3u-32d19d3c46.json" target="Resources/fir-otipass-alsace-firebase-crashreporting-zvy3u-32d19d3c46.json" />
 		
@@ -122,8 +118,8 @@ xmlns:android="http://schemas.android.com/apk/res/android">
 		</js-module>
 	</platform>
 
-	<hook src="scripts/after_prepare.js" type="after_plugin_install" />
-    <hook type="before_plugin_uninstall" src="hooks/before_plugin_rm.js" />
-    <hook type="after_platform_add" src="scripts/after_plugin_add.js" />
+	<hook type="after_plugin_install" src="scripts/after_prepare.js"/>
+    <hook type="before_plugin_uninstall" src="scripts/before_plugin_rm.js" />
+    <hook type="after_platform_add" src="scripts/after_prepare.js" />
 
 </plugin>
