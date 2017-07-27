@@ -40,10 +40,12 @@ public class FCMPluginActivity extends Activity {
         }
         Bundle bundle = new Bundle();
         for (Map.Entry<String, Object> entry : data.entrySet()) {
-            if (entry.getValue().getClass() == Boolean.class) {
-                bundle.putBoolean(entry.getKey(), (Boolean.valueOf(entry.getValue().toString())));
-            }else if(entry.getValue().getClass() == String.class){
-                bundle.putString(entry.getKey(), entry.getValue().toString());
+            if(entry.getValue() != null){
+                if (entry.getValue().getClass() == Boolean.class) {
+                    bundle.putBoolean(entry.getKey(), (Boolean.valueOf(entry.getValue().toString())));
+                }else if(entry.getValue().getClass() == String.class){
+                    bundle.putString(entry.getKey(), entry.getValue().toString());
+                }
             }
 
         }
